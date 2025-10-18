@@ -1,6 +1,6 @@
 // pages/index.tsx
 import Link from "next/link";
-import WeatherBadge from "@/components/WeatherBadge";
+import WeatherBadge from "../components/WeatherBadge";
 
 export default function Home() {
   return (
