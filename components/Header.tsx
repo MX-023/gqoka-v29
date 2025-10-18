@@ -3,10 +3,12 @@ import WeatherBadge from "@/components/WeatherBadge";
 
 export default function Header() {
   return (
-    <header className="border-b bg-white/70 backdrop-blur sticky top-0 z-40">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 h-16 grid grid-cols-3 items-center">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
+      <div className="max-w-6xl mx-auto px-5 md:px-8 h-16 grid grid-cols-3 items-center">
         <div className="text-sm">
-          <Link href="/wardrobe" className="hidden sm:inline-block px-3 py-1.5 rounded-md border">Garde-robe</Link>
+          <Link href="/wardrobe" className="hidden sm:inline-block px-3 py-1.5 rounded-md border border-white/15 hover:border-white/30">
+            Garde-robe
+          </Link>
         </div>
 
         {/* Logo typographique G Q O K A centré */}
@@ -18,7 +20,9 @@ export default function Header() {
 
         <div className="flex justify-end items-center gap-3">
           <WeatherBadge />
-          <Link href="/login" className="px-3 py-1.5 rounded-md bg-black text-white text-sm">Se connecter</Link>
+          <Link href="/login" className="px-3 py-1.5 rounded-md bg-white text-black text-sm hover:bg-white/90">
+            Se connecter
+          </Link>
         </div>
       </div>
     </header>

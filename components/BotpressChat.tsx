@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 
 export default function BotpressChat() {
-  const botId = process.env.NEXT_PUBLIC_BOTPRESS_BOT_ID; // ex: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-  const clientId = process.env.NEXT_PUBLIC_BOTPRESS_CLIENT_ID; // ex: "xxxxxxxx-xxxx-...."
+  const botId = process.env.NEXT_PUBLIC_BOTPRESS_BOT_ID;
+  const clientId = process.env.NEXT_PUBLIC_BOTPRESS_CLIENT_ID;
+
   useEffect(() => {
     if (!botId || !clientId) return;
     const s1 = document.createElement("script");
@@ -15,7 +16,7 @@ export default function BotpressChat() {
         clientId: "${clientId}",
         composerPlaceholder: "Parler à Anna",
         themeName: "prism",
-        layoutWidth: "400px",
+        botName: "Anna",
         hideWidget: false,
         enableTranscriptDownload: false,
         showConversationsButton: true
@@ -25,5 +26,6 @@ export default function BotpressChat() {
     s1.onload = () => document.body.appendChild(s2);
     return () => { s1.remove(); s2.remove(); };
   }, [botId, clientId]);
+
   return null;
 }
