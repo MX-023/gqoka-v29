@@ -9,14 +9,16 @@ export default function BotpressChat() {
     const s1 = document.createElement("script");
     s1.src = "https://cdn.botpress.cloud/webchat/v1/inject.js";
     s1.async = true;
+
     const s2 = document.createElement("script");
     s2.innerHTML = `
       window.botpressWebChat && window.botpressWebChat.init({
         botId: "${botId}",
         clientId: "${clientId}",
+        botName: "Anna",
         composerPlaceholder: "Parler à Anna",
         themeName: "prism",
-        botName: "Anna",
+        layoutWidth: "380px",
         hideWidget: false,
         enableTranscriptDownload: false,
         showConversationsButton: true
