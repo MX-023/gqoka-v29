@@ -1,9 +1,9 @@
 import Link from "next/link";
-import WeatherBadge from "./WeatherBadge";
+import WeatherBadge from "@/components/WeatherBadge";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-black/50 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-3 items-center px-5 h-16">
         <div className="flex items-center gap-3">
           <Link href="/wardrobe" className="hidden sm:inline-block text-sm text-white/80 hover:text-white">
@@ -12,9 +12,7 @@ export default function Header() {
         </div>
 
         <div className="flex justify-center">
-          <Link href="/" className="h-title tracking-[0.28em] text-lg md:text-xl select-none">
-            G Q O K A
-          </Link>
+          <Link href="/" className="h-title text-lg md:text-xl select-none">G Q O K A</Link>
         </div>
 
         <div className="flex justify-end items-center gap-3">
@@ -27,4 +25,5 @@ export default function Header() {
     </header>
   );
 }
+
 

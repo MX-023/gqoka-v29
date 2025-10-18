@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800&display=swap');
+
 :root { color-scheme: dark; }
 html, body, #__next { height: 100%; }
 
+body { margin:0; }
 
+/* Dark texture background (subtil) */
+.bg-gqoka{
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(255,255,255,0.06), transparent 60%),
+              radial-gradient(900px 500px at 110% 0%, rgba(255,255,255,0.05), transparent 60%),
+              linear-gradient(180deg, #0a0a0a, #111 35%, #0d0d0d 100%);
+}
+
+/* Utilities */
+.h-title { font-family: 'Montserrat', system-ui, sans-serif; letter-spacing: .08em; }
+.h-text  { font-family: 'Inter', system-ui, sans-serif; }
+.btn-primary { @apply inline-flex items-center justify-center px-5 py-3 rounded-xl bg-white text-black font-medium hover:bg-white/90 transition; }
+.btn-ghost  { @apply inline-flex items-center justify-center px-5 py-3 rounded-xl border border-white/20 hover:border-white/40 text-white transition; }
+.card       { @apply rounded-2xl border border-white/10 bg-white/5 p-5; }
