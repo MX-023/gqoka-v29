@@ -5,9 +5,9 @@ import BotpressChat from "@/components/BotpressChat";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="min-h-screen text-white bg-gqoka">
+    <div className="min-h-screen bg-black text-white antialiased">
       <Header />
-      <main className="mx-auto w-full max-w-6xl px-5 pb-24 pt-10">
+      <main className="section pb-24 pt-8">
         <Component {...pageProps} />
       </main>
       <BotpressChat />
