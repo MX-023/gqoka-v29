@@ -1,18 +1,8 @@
+/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Fonts (Fontshare CDN) */
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=inter@400,500,600&display=swap');
-
-:root { color-scheme: dark; }
-html, body, #__next { height: 100%; }
-body { margin: 0; background:#0b0b0b; color:#fff; }
-
-/* UI atoms */
-.btn-primary { @apply inline-flex items-center justify-center px-5 py-3 rounded-xl bg-white text-black font-medium hover:bg-white/90 transition; }
-.btn-ghost  { @apply inline-flex items-center justify-center px-5 py-3 rounded-xl border border-white/20 hover:border-white/40 text-white transition; }
-.card       { @apply rounded-2xl border border-white/10 bg-white/5 p-5; }
-
-/* Hero spacing */
-.section { @apply mx-auto w-full max-w-6xl px-4 sm:px-6 md:px-8; }
+:root { --bg:#0E0E0E; --fg:#FFFFFF; }
+html,body { background:var(--bg); color:var(--fg); }
+* { -webkit-tap-highlight-color: transparent; }

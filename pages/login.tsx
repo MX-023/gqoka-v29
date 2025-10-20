@@ -1,27 +1,55 @@
-import { useState } from "react";
-import { supabase } from "../lib/supabaseClient";
-import { useRouter } from "next/router";
+// pages/login.tsx
+import Link from "next/link";
+import { FiLogIn, FiMail, FiLock } from "react-icons/fi";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [err, setErr] = useState<string | null>(null);
-  const router = useRouter();
-
-  async function onLogin() {
-    setErr(null);
-    const { error } = await supabase.auth.signInWithPassword({ email, password: pwd });
-    if (error) setErr(error.message);
-    else router.push("/");
-  }
-
   return (
-    <div className="max-w-sm mx-auto space-y-4">
-      <h2 className="text-2xl font-bold">Connexion</h2>
-      <input className="border rounded-xl px-3 py-2 w-full" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
-      <input className="border rounded-xl px-3 py-2 w-full" placeholder="Mot de passe" type="password" value={pwd} onChange={e=>setPwd(e.target.value)} />
-      {err && <div className="text-sm text-red-500">{err}</div>}
-      <button className="btn w-full" onClick={onLogin}>Se connecter</button>
-    </div>
+    <main className="min-h-screen grid place-items-center px-6">
+      <div className="w-full max-w-md">
+        <header className="text-center mb-8">
+          <h1 className="font-[ClashDisplay] text-3xl font-bold">Connexion</h1>
+          <p className="mt-2 text-zinc-400">Sobre. Rapide. Respectueuse.</p>
+        </header>
+
+        <form className="rounded-2xl border border-zinc-800 bg-[#0F0F0F] p-6 space-y-4">
+          <label className="block">
+            <span className="mb-1 block text-sm text-zinc-400">Email</span>
+            <div className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-black/30 px-3">
+              <FiMail />
+              <input
+                type="email"
+                className="w-full bg-transparent py-3 outline-none"
+                placeholder="ton.email@exemple.com"
+              />
+            </div>
+          </label>
+
+          <label className="block">
+            <span className="mb-1 block text-sm text-zinc-400">Mot de passe</span>
+            <div className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-black/30 px-3">
+              <FiLock />
+              <input
+                type="password"
+                className="w-full bg-transparent py-3 outline-none"
+                placeholder="••••••••"
+              />
+            </div>
+          </label>
+
+          <button
+            type="submit"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-white text-black py-3 hover:opacity-90"
+          >
+            <FiLogIn className="text-lg" />
+            <span>Se connecter</span>
+          </button>
+
+          <div className="text-center text-sm text-zinc-500">
+            Pas de compte ?{" "}
+            <Link href="/signup" className="underline hover:text-zinc-300">Créer un compte</Link>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 }
