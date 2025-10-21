@@ -1,8 +1,18 @@
-/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root { --bg:#0E0E0E; --fg:#FFFFFF; }
-html,body { background:var(--bg); color:var(--fg); }
-* { -webkit-tap-highlight-color: transparent; }
+html, body {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+  font-family: 'Clash Display', sans-serif;
+}
+
+button, a {
+  transition: all 0.25s ease-in-out;
+}

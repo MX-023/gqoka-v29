@@ -1,62 +1,48 @@
 import { useEffect, useState } from "react";
-
-type W = { name?: string; main?: { temp?: number }; weather?: { id: number }[] };
-
-function iconFromCode(code?: number) {
-  if (!code) return "🌤️";
-  if (code >= 200 && code < 300) return "⛈️";
-  if (code >= 300 && code < 600) return "🌧️";
-  if (code >= 600 && code < 700) return "❄️";
-  if (code === 800) return "☀️";
-  if (code > 800) return "☁️";
-  return "🌤️";
-}
+import { WiDaySunny, WiCloud, WiRain } from "react-icons/wi";
 
 export default function WeatherBadge() {
-  const [city, setCity] = useState<string>("");
-  const [temp, setTemp] = useState<string>("");
-  const [icon, setIcon] = useState<string>("🌤️");
+  const [weather, setWeather] = useState<{ temp: number; condition: string } | null>(null);
 
   useEffect(() => {
-    const key = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-    if (!key) return;
-
-    const fetchBy = async (url: string, fallbackCity?: string) => {
-      const r = await fetch(url);
-      const j: W = await r.json();
-      setCity(fallbackCity || j?.name || "");
-      const t = j?.main?.temp;
-      setTemp(Number.isFinite(t as number) ? `${Math.round(t as number)}°C` : "");
-      setIcon(iconFromCode(j?.weather?.[0]?.id));
-    };
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords }) =>
-          fetchBy(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${key}&units=metric&lang=fr`
-          ),
-        () =>
-          fetchBy(
-            `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${key}&units=metric&lang=fr`,
-            "Paris"
-          ),
-        { timeout: 4000 }
-      );
-    } else {
-      fetchBy(
-        `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${key}&units=metric&lang=fr`,
-        "Paris"
-      );
+    async function fetchWeather() {
+      try {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=8fb37d0d62dd406fb90185632251210&units=metric&lang=fr`
+        );
+        const data = await response.json();
+        setWeather({
+          temp: data.main.temp,
+          condition: data.weather[0].main,
+        });
+      } catch (error) {
+        console.error("Erreur météo :", error);
+      }
     }
+    fetchWeather();
   }, []);
 
-  if (!city && !temp) return null;
+  if (!weather) return <p className="text-sm text-zinc-500">Chargement météo...</p>;
+
+  const getIcon = () => {
+    switch (weather.condition) {
+      case "Clear":
+        return <WiDaySunny className="text-yellow-500 text-5xl" />;
+      case "Clouds":
+        return <WiCloud className="text-zinc-500 text-5xl" />;
+      case "Rain":
+        return <WiRain className="text-blue-400 text-5xl" />;
+      default:
+        return <WiCloud className="text-zinc-400 text-5xl" />;
+    }
+  };
 
   return (
-    <div className="flex items-center gap-2 rounded-md border border-white/15 px-2.5 py-1.5 bg-white/5">
-      <span className="text-2xl leading-none" aria-hidden>{icon}</span>
-      <span className="text-sm whitespace-nowrap">{city}{temp ? ` · ${temp}` : ""}</span>
+    <div className="flex items-center justify-center gap-4">
+      {getIcon()}
+      <span className="text-lg font-semibold text-zinc-800">
+        {weather.temp.toFixed(0)}°C
+      </span>
     </div>
   );
 }
