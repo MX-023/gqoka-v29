@@ -1,4 +1,8 @@
 // pages/_app.tsx
+import BotpressChat from "@/components/BotpressChat";
+...
+<BotpressChat />
+
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
 import BotpressChat from "../components/BotpressChat";
