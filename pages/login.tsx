@@ -1,55 +1,63 @@
-// pages/login.tsx
 import Link from "next/link";
-import { FiLogIn, FiMail, FiLock } from "react-icons/fi";
+import { FaUser, FaLock } from "react-icons/fa";
+import { FiArrowRightCircle } from "react-icons/fi";
 
 export default function Login() {
   return (
-    <main className="min-h-screen grid place-items-center px-6">
-      <div className="w-full max-w-md">
-        <header className="text-center mb-8">
-          <h1 className="font-[ClashDisplay] text-3xl font-bold">Connexion</h1>
-          <p className="mt-2 text-zinc-400">Sobre. Rapide. Respectueuse.</p>
-        </header>
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-6">
+      <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-lg border border-zinc-200 text-center">
+        <h1 className="text-3xl font-bold text-zinc-900 mb-1">Bienvenue sur GQOKA</h1>
+        <p className="text-sm text-zinc-500 mb-8">
+          Connecte-toi pour explorer ton dressing intelligent.
+        </p>
 
-        <form className="rounded-2xl border border-zinc-800 bg-[#0F0F0F] p-6 space-y-4">
-          <label className="block">
-            <span className="mb-1 block text-sm text-zinc-400">Email</span>
-            <div className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-black/30 px-3">
-              <FiMail />
+        <form className="space-y-5 text-left">
+          {/* Champ utilisateur */}
+          <div>
+            <label className="block text-sm font-medium text-zinc-700 mb-1">Email</label>
+            <div className="flex items-center border border-zinc-300 rounded-lg px-3 py-2 bg-zinc-50">
+              <FaUser className="text-zinc-400 mr-2" />
               <input
                 type="email"
-                className="w-full bg-transparent py-3 outline-none"
-                placeholder="ton.email@exemple.com"
+                placeholder="exemple@email.com"
+                className="w-full bg-transparent outline-none text-zinc-800"
+                required
               />
             </div>
-          </label>
+          </div>
 
-          <label className="block">
-            <span className="mb-1 block text-sm text-zinc-400">Mot de passe</span>
-            <div className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-black/30 px-3">
-              <FiLock />
+          {/* Champ mot de passe */}
+          <div>
+            <label className="block text-sm font-medium text-zinc-700 mb-1">Mot de passe</label>
+            <div className="flex items-center border border-zinc-300 rounded-lg px-3 py-2 bg-zinc-50">
+              <FaLock className="text-zinc-400 mr-2" />
               <input
                 type="password"
-                className="w-full bg-transparent py-3 outline-none"
                 placeholder="••••••••"
+                className="w-full bg-transparent outline-none text-zinc-800"
+                required
               />
             </div>
-          </label>
+          </div>
 
+          {/* Bouton connexion */}
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-white text-black py-3 hover:opacity-90"
+            className="flex items-center justify-center gap-2 w-full rounded-xl bg-zinc-900 text-white py-3 mt-3 hover:bg-zinc-700 transition"
           >
-            <FiLogIn className="text-lg" />
             <span>Se connecter</span>
+            <FiArrowRightCircle className="text-xl" />
           </button>
-
-          <div className="text-center text-sm text-zinc-500">
-            Pas de compte ?{" "}
-            <Link href="/signup" className="underline hover:text-zinc-300">Créer un compte</Link>
-          </div>
         </form>
+
+        {/* Lien inscription */}
+        <p className="mt-6 text-sm text-zinc-500">
+          Pas encore de compte ?{" "}
+          <Link href="/signup" className="text-zinc-900 font-medium hover:underline">
+            Inscris-toi
+          </Link>
+        </p>
       </div>
-    </main>
+    </div>
   );
 }
